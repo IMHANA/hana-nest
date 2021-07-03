@@ -14,4 +14,16 @@ export class MoviesService {
     return this.movies.find((movie) => movie.id === +id);
     // parseInt(id) 는 +id 라고 바꿀수 있다고 해서 변경
   }
+
+  deleteOne(id: string): boolean {
+    this.movies.filter((movie) => movie.id !== +id);
+    return true;
+  }
+
+  create(movieData) {
+    this.movies.push({
+      id: this.movies.length + 1,
+      ...movieData,
+    });
+  }
 }
