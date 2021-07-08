@@ -1,12 +1,21 @@
-import { Controller, Get } from '@nestjs/common';
+import {
+  BadGatewayException,
+  Controller,
+  Get,
+  HttpException,
+  NotFoundException,
+  UseFilters,
+} from '@nestjs/common';
 import { UserService } from './app.user_service';
 
-@Controller()
+@Controller('user')
 export class UserController {
   constructor(private readonly UserService: UserService) {}
 
-  @Get()
+  @Get('list')
+  // @UseFilters(HttpException)
   getUser(): string {
+    throw new BadGatewayException();
     return this.UserService.getUser();
   }
 
